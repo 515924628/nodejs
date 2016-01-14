@@ -6,29 +6,22 @@ var plumber = require("gulp-plumber");
 var connect = require("gulp-connect");
 var nodemon = require("gulp-nodemon");
 
-let ignore = [
-	"!node_modules/**/*",
-	"!bundle/**/*",
-	"!.idea/**/*",
-	"!gulpfile.babel.js",
-	"!webpack.config.babel.js"
-];
+let js = ["src/**/*.js"];
 
 gulp.task("babelwatch", ()=> {
-	gulp.watch(["**/*.babel.js", ...ignore], ["babel"]);
+	gulp.watch(js, ["babel"]);
 });
 gulp.task("babel", ()=> {
-	gulp.src(["**/*.babel.js", ...ignore])
+	gulp.src(js)
 		.pipe(plumber())
-		.pipe(rename((path)=> {
-			var basename = path.basename;
-			path.basename = basename.substr(0, basename.length - 6);
-		}))
 		.pipe(babel())
 		.pipe(gulp.dest("./"))
 });
 
-gulp.task("staticserve", ["connect", "staticwatch"]);
+
+
+
+gulp.task("serve", ["connect", "babelwatch", "reloadwatch"]);
 
 gulp.task("connect", ()=> {
 	connect.server({
@@ -37,19 +30,23 @@ gulp.task("connect", ()=> {
 		livereload: true
 	});
 });
-gulp.task("staticwatch", ()=> {
-	gulp.watch(["**/*.babel.js", ...ignore], ["babel"]);
-	gulp.watch(["public/*", "bundle/*", ...ignore], ["reload"]);
+
+gulp.task("reloadwatch", ()=> {
+	gulp.watch(["public/**/*"], ["reload"]);
 });
+
 gulp.task("reload", ()=> {
 	gulp.src("public/*")
 		.pipe(connect.reload())
 });
 
-gulp.task("express",["babelwatch"], ()=> {
+
+
+
+
+gulp.task("express", ["babelwatch"], ()=> {
 	nodemon({
 		script: "bin/www",
-		ignore: ["*.babel.js"],
 		ext: "js"
 	})
 });

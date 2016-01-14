@@ -1,10 +1,15 @@
-var express = require('express');
-var router = express.Router();
+"use strict";
 
+var router = require("express").Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.route("/").get(function (req, res) {
+	console.log(req.session.username);
+	console.log("index:" + req.cookies.testapp);
+	if (req.session.username) {
+		res.render("index", { title: "radius的个人网站" });
+	} else {
+		res.redirect("/login");
+	}
 });
 
 module.exports = router;

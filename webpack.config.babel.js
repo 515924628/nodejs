@@ -7,11 +7,11 @@ let uglifyJsPlugin = new webpack.optimize.UglifyJsPlugin({compress: {warnings: f
 export default {
 	entry: {
 		//main: "./src/main.js"
-		index: "./public/javascripts/test.js"
+		ajax: "./src/public/javascripts/ajax.js"
 	},
 	plugins: [
-		commonsPlugin
-		,uglifyJsPlugin
+		//commonsPlugin
+		//,uglifyJsPlugin
 	],
 	output: {
 		path: "public/javascripts",
