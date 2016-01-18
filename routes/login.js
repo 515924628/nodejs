@@ -7,14 +7,12 @@ router.route("/").get(function (req, res) {
 }).post(function (_ref, res) {
 	var body = _ref.body;
 	var session = _ref.session;
-	var cookies = _ref.cookies;
 
-	console.log("login " + cookies);
 	if (body.username) {
 		session.username = body.username;
-		res.jsonp({ state: "success" });
+		res.jsonp({ "success": true, "info": "登陆成功" });
 	} else {
-		res.send("登陆失败");
+		res.jsonp({ "success": false, "info": "登陆失败" });
 	}
 });
 

@@ -3,11 +3,10 @@ html
 	head
 		title login
 	body
-		form(action="/login" method="post")
+		form(id="loginform" action="/login" method="post")
 			input(id="username" name="username" type="text" placeholder="username")
 			br
 			input(id="password" name="password" type="password" placeholder="password")
 			br
-			input(type="button" onclick="func()" value="登陆")
-		script(src="javascripts/browser.js")
+			input(id="sub" type="button" value="登陆")
 		script(src="javascripts/ajax.js")

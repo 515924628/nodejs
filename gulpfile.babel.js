@@ -6,7 +6,7 @@ var plumber = require("gulp-plumber");
 var connect = require("gulp-connect");
 var nodemon = require("gulp-nodemon");
 
-let js = ["src/**/*.js"];
+let js = ["src/routes/**/*.js"];
 
 gulp.task("babelwatch", ()=> {
 	gulp.watch(js, ["babel"]);
@@ -15,7 +15,7 @@ gulp.task("babel", ()=> {
 	gulp.src(js)
 		.pipe(plumber())
 		.pipe(babel())
-		.pipe(gulp.dest("./"))
+		.pipe(gulp.dest("routes/"))
 });
 
 

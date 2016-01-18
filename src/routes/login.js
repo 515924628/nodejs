@@ -2,13 +2,12 @@ const router = require("express").Router();
 
 router.route("/").get((req, res)=> {
 	res.render("login");
-}).post(({body, session, cookies}, res)=> {
-	console.log("login " + cookies);
+}).post(({body, session}, res)=> {
 	if (body.username) {
 		session.username = body.username;
-		res.jsonp({state:"success"})
+		res.jsonp({"success": true, "info": "登陆成功"})
 	} else {
-		res.send("登陆失败")
+		res.jsonp({"success": false, "info": "登陆失败"})
 	}
 });
 
