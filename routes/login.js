@@ -10,9 +10,9 @@ router.route("/").get(function (req, res) {
 
 	if (body.username) {
 		session.username = body.username;
-		res.jsonp({ "success": true, "info": "登陆成功" });
+		res.json({ "success": true, "info": "登陆成功" });
 	} else {
-		res.jsonp({ "success": false, "info": "登陆失败" });
+		res.json({ "success": false, "info": "登陆失败" });
 	}
 });
 

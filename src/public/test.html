@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<div class="foo">
+	<ul>
+		<List v-for="x in msg"></List>
+	</ul>
+</div>
+<script>
+	new Vue({
+		el: ".foo",
+		data: {
+			msg: [1,null]
+		},
+		components: {
+			"List": {
+				props: {
+					myMsg: {
+						type: Number,
+						default: 100
+					}
+				},
+				template:"<li>{{myMsg}}</li>"
+			}
+		}
+	});
+</script>
+</body>
+</html>

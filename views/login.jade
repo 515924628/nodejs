@@ -1,6 +1,7 @@
 doctype html
 html
 	head
+		meta(name="viewport" content="width=device-width,initial-scale=1")
 		title login
 	body
 		form(id="loginform" action="/login" method="post")
@@ -10,3 +11,7 @@ html
 			br
 			input(id="sub" type="button" value="登陆")
 		script(src="javascripts/ajax.js")
+		script.
+			function test(data) {
+				alert(data)
+			}

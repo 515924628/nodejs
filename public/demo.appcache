@@ -1,0 +1,8 @@
+CACHE MANIFEST
+# 2016年1月20日
+/test.html
+/favicon.ico
+/stylesheets/style.css
+
+FALLBACK:
+/action/ /404.html

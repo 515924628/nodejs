@@ -1,12 +1,13 @@
-var path = require("path");
-var gulp = require("gulp");
-var babel = require("gulp-babel");
-var rename = require("gulp-rename");
-var plumber = require("gulp-plumber");
-var connect = require("gulp-connect");
-var nodemon = require("gulp-nodemon");
+const path = require("path");
+const gulp = require("gulp");
+const babel = require("gulp-babel");
+const rename = require("gulp-rename");
+const plumber = require("gulp-plumber");
+const connect = require("gulp-connect");
+const nodemon = require("gulp-nodemon");
 
 let js = ["src/routes/**/*.js"];
+let html = ["src/public/**/*.html"];
 
 gulp.task("babelwatch", ()=> {
 	gulp.watch(js, ["babel"]);
@@ -15,10 +16,8 @@ gulp.task("babel", ()=> {
 	gulp.src(js)
 		.pipe(plumber())
 		.pipe(babel())
-		.pipe(gulp.dest("routes/"))
+		.pipe(gulp.dest("routes/"));
 });
-
-
 
 
 gulp.task("serve", ["connect", "babelwatch", "reloadwatch"]);
@@ -37,16 +36,18 @@ gulp.task("reloadwatch", ()=> {
 
 gulp.task("reload", ()=> {
 	gulp.src("public/*")
-		.pipe(connect.reload())
+		.pipe(connect.reload());
 });
 
 
-
-
-
+gulp.task("copy", ()=> {
+	gulp.src(html)
+		.pipe(gulp.dest("public/"));
+});
 gulp.task("express", ["babelwatch"], ()=> {
+	gulp.watch(html, ["copy"]);
 	nodemon({
 		script: "bin/www",
 		ext: "js"
-	})
+	});
 });

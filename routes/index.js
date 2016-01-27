@@ -9,5 +9,9 @@ router.route("/").get(function (req, res) {
 		res.redirect("/login");
 	}
 });
+router.route("/action/:n").get(function (req, res) {
+	res.set({ "Access-Control-Allow-Origin": "*" });
+	res.send(req.params);
+});
 
 module.exports = router;

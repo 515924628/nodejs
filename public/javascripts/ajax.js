@@ -67,19 +67,17 @@
 						case 3:
 							res = _context.sent;
 
-							console.log(res.headers.get("Content-Type"));
-
 							if (!/json/.test(res.headers.get("Content-Type"))) {
-								_context.next = 7;
+								_context.next = 6;
 								break;
 							}
 
 							return _context.abrupt("return", res.json());
 
-						case 7:
+						case 6:
 							return _context.abrupt("return", res.text());
 
-						case 8:
+						case 7:
 						case "end":
 							return _context.stop();
 					}
@@ -91,6 +89,7 @@
 			return ref.apply(this, arguments);
 		};
 	}();
+
 	exports.get = function () {
 		var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(url) {
 			var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
@@ -113,6 +112,7 @@
 			return ref.apply(this, arguments);
 		};
 	}();
+
 	exports.post = function () {
 		var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee3(url, data) {
 			var options = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
@@ -125,6 +125,7 @@
 								options.headers = options.headers || new Headers();
 								options.headers.set("Content-Type", "application/json");
 								options.body = JSON.stringify(data);
+								console.log(options.body);
 							} else {
 								options.body = data;
 							}
@@ -150,7 +151,10 @@
 				switch (_context4.prev = _context4.next) {
 					case 0:
 						_context4.next = 2;
-						return exports.post("/login", { username: username.value, password: password.value });
+						return exports.post("/login", {
+							username: document.getElementById("username").value,
+							password: document.getElementById("password").value
+						});
 
 					case 2:
 						data = _context4.sent;

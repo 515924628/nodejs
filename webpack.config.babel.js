@@ -22,9 +22,12 @@ export default {
 			{
 				test: /\.js$/,
 				loader: "babel"
-			//}, {
-			//	test: /\.css$/,
-			//	loader: "style!css"
+				//}, {
+				//	test: /\.css$/,
+				//	loader: "style!css"
+			}, {
+				test: /\.vue$/,
+				loader: "vue"
 			}
 		]
 	}
