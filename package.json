@@ -21,6 +21,7 @@
     "express-session": "latest",
     "hammer": "0.0.5",
     "jade": "~1.11.0",
+    "moment": "^2.11.2",
     "morgan": "~1.6.1",
     "request": "^2.67.0",
     "serve-favicon": "~2.3.0",
